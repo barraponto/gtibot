@@ -27,7 +27,7 @@ def google_account(bot, update):
     update.message.reply_text(ACCOUNT_MESSAGE.format(
         username=os.environ.get('GOOGLE_ACCOUNT_USERNAME'),
         password=os.environ.get('GOOGLE_ACCOUNT_PASSWORD'),
-    ))
+    ), parse_mode='markdown')
 
 
 def classroom(bot, update):
