@@ -7,6 +7,12 @@ from telegram.ext import Updater, CommandHandler
 
 SP_TIMEZONE = pytz.timezone('America/Sao_Paulo')
 CLASS_MESSAGE = 'A {position} aula é de {class_.subject} na {class_.room}.'
+ACCOUNT_MESSAGE = '''
+*** CONTA DE DRIVE DA SALA ***
+Usuário: `{username}`
+Senha: `{password}`
+'''
+
 
 def get_sao_paulo_datetime(message):
     '''Gets message datetime localized for São Paulo.'''
@@ -14,6 +20,15 @@ def get_sao_paulo_datetime(message):
     utc_datetime = message.date.astimezone(pytz.utc)
     # now let's essepê it
     return utc_datetime.astimezone(SP_TIMEZONE)
+
+
+def google_account(bot, update):
+    '''Informs the credentials for class google account'''
+    update.message.reply_text(ACCOUNT_MESSAGE.format(
+        username=os.environ.get('GOOGLE_ACCOUNT_USERNAME'),
+        password=os.environ.get('GOOGLE_ACCOUNT_PASSWORD'),
+    ))
+
 
 def classroom(bot, update):
     '''Tells the class name and room for the day.'''
@@ -25,7 +40,9 @@ def classroom(bot, update):
     ])
     update.message.reply_text(message)
 
+
 updater = Updater(os.environ.get('TELEGRAM_API_KEY'))
 updater.dispatcher.add_handler(CommandHandler('sala', classroom))
+updater.dispatcher.add_handler(CommandHandler('conta', google_account))
 updater.start_polling()
 updater.idle()
