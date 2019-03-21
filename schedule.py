@@ -34,7 +34,7 @@ SCHEDULE = [
 
     # Friday
 
-    [ Class('Engenharia de Software', 'Aanderson Barbosa', 'Sala 2'),
+    [ Class('Engenharia de Software', 'Anderson Barbosa', 'Sala 2'),
 
       Class('Engenharia de Software', 'Anderson Barbosa', 'Sala 2') ],
 
