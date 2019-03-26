@@ -1,13 +1,8 @@
 from collections import namedtuple
 
-
-
 Class = namedtuple('Class', 'subject teacher room')
 
-
-
 SCHEDULE = [
-
     # Monday is the 0 index
     [ Class('Gestão Ambiental', 'Eliane Melo', 'Sala 18'),
       Class('Gestão de Pessoas', 'Sandra Aparecida', 'lab 3') ],
